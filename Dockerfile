@@ -16,7 +16,7 @@ RUN nohup /usr/bin/Xvfb "${XVFB_SERVER}" -screen "${XVFB_SCREEN}" "${XVFB_RESOLU
     winecfg /v win10 &&\
     mkdir /root/.wine/drive_c/extra_dlls &&\
     wineserver -k
-RUN cp /dump_syms/windows/msdia140.dll /root/.wine/drive_c/extra_dlls/ &&\
+RUN curl -L 'https://github.com/Nemirtingas/breakpad_dump_syms/raw/msdia140/msdia140.dll' -o /root/.wine/drive_c/extra_dlls/msdia140.dll &&\
     regsvr32 /s /root/.wine/drive_c/extra_dlls/msdia140.dll &&\
     wineserver -k
 RUN ln -s /dump_syms/linux/dump_syms   /usr/bin/dump_syms_linux &&\
